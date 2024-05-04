@@ -23,7 +23,7 @@ steps:
   - script: |
       chmod +x startup.sh
       ./startup.sh
-    workingDirectory: $(Build.SourcesDirectory)/fastapi
+    workingDirectory: $(Build.SourcesDirectory)
     displayName: 'Run startup script'
 
   # Add additional steps here for testing, linting, etc.
