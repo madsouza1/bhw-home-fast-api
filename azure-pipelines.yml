@@ -17,13 +17,13 @@ steps:
 
   - script: |
       python -m pip install --upgrade pip
-      pip install -r bhw-home/requirements.txt
+      pip install -r requirements.txt
     displayName: 'Install dependencies'
     workingDirectory: $(Build.SourcesDirectory)
 
   - script: |
-      chmod +x bhw-home/startup.sh
-      ./bhw-home/startup.sh
+      chmod +x startup.sh
+      ./startup.sh
     displayName: 'Run startup script'
     workingDirectory: $(Build.SourcesDirectory)
 
