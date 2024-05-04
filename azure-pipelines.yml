@@ -27,6 +27,10 @@ steps:
     displayName: 'Run startup script'
     workingDirectory: $(Build.SourcesDirectory)
 
+  - script: |
+      cd $(Build.SourcesDirectory)
+    displayName: 'Change back to home directory'
+
   # Add additional steps here for testing, linting, etc.
 
   # You might not need to run the FastAPI server separately if your startup script does it.
