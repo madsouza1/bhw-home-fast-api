@@ -17,20 +17,21 @@ steps:
 
   - script: |
       python -m pip install --upgrade pip
-      pip install -r requirements.txt
+      pip install -r bhw-home/requirements.txt
     displayName: 'Install dependencies'
+    workingDirectory: $(Build.SourcesDirectory)
 
   - script: |
-      chmod +x startup.sh
-      ./startup.sh
-    workingDirectory: $(Build.SourcesDirectory)
+      chmod +x bhw-home/startup.sh
+      ./bhw-home/startup.sh
     displayName: 'Run startup script'
+    workingDirectory: $(Build.SourcesDirectory)
 
   # Add additional steps here for testing, linting, etc.
 
   # You might not need to run the FastAPI server separately if your startup script does it.
   #- script: |
-  #    uvicorn fastapi.main:app --host 0.0.0.0 --port 8000
+  #    uvicorn bhw-home/fastapi.main:app --host 0.0.0.0 --port 8000
   #  displayName: 'Run FastAPI server'
 
   # Add deployment steps if necessary
