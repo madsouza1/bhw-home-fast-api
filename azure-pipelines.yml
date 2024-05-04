@@ -21,8 +21,9 @@ steps:
     displayName: 'Install dependencies'
 
   - script: |
-      chmod +x fastapi/startup.sh
-      ./fastapi/startup.sh
+      chmod +x startup.sh
+      ./startup.sh
+    workingDirectory: $(Build.SourcesDirectory)/fastapi
     displayName: 'Run startup script'
 
   # Add additional steps here for testing, linting, etc.
