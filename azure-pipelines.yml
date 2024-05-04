@@ -1,19 +1,35 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- master
+  branches:
+    include:
+      - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+  - script: echo 'Starting pipeline...'
+    displayName: 'Starting Pipeline'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.x'
+      addToPath: true
+
+  - script: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+    displayName: 'Install dependencies'
+
+  - script: |
+      chmod +x fastapi/startup.sh
+      ./fastapi/startup.sh
+    displayName: 'Run startup script'
+
+  # Add additional steps here for testing, linting, etc.
+
+  # You might not need to run the FastAPI server separately if your startup script does it.
+  #- script: |
+  #    uvicorn fastapi.main:app --host 0.0.0.0 --port 8000
+  #  displayName: 'Run FastAPI server'
+
+  # Add deployment steps if necessary
